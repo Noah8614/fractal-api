@@ -1,0 +1,17 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Install system dependencies for matplotlib
+RUN apt-get update && apt-get install -y \
+    python3-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy only the app directory contents
+COPY app/ .
+
+CMD ["uvicorn", "fractal_service:app", "--host", "0.0.0.0", "--port", "8080"]
