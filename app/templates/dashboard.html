@@ -437,6 +437,7 @@
         
         // Store recently generated fractals in memory for display
         let recentFractals = [];
+        const API_BASE_URL = 'https://noahfractals.cab432.com';
         
         // Set username from backend injection
         document.addEventListener('DOMContentLoaded', function() {
@@ -532,7 +533,7 @@
     btn.disabled = true;
 
     try {
-        const resp = await fetch("/fractals/list", {
+        const resp = await fetch(`${API_BASE_URL}/fractals/list`, {
             headers: { "Authorization": "Bearer " + token }
         });
         
@@ -607,7 +608,7 @@
     const formData = new FormData(e.target);
     
     try {
-        const resp = await fetch("/fractals/generate", {
+        const resp = await fetch(`${API_BASE_URL}/fractals/generate`, {
             method: "POST",
             headers: { "Authorization": "Bearer " + token },
             body: formData

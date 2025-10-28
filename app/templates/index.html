@@ -282,6 +282,8 @@
       }
     }
 
+    const API_BASE_URL = 'https://noahfractals.cab432.com';
+
     async function register() {
       const button = event.target;
       const username = document.getElementById('reg_username').value;
@@ -291,7 +293,7 @@
       setButtonLoading(button, true);
       
       try {
-        const res = await fetch('/register', {
+        const res = await fetch(`${API_BASE_URL}/register`, {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({ username, email, password })
@@ -315,7 +317,7 @@
       setButtonLoading(button, true);
       
       try {
-        const res = await fetch('/confirm', {
+        const res = await fetch(`${API_BASE_URL}/confirm`, {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({ username, code })
@@ -339,7 +341,7 @@
       setButtonLoading(button, true);
       
       try {
-        const res = await fetch('/login', {
+        const res = await fetch(`${API_BASE_URL}/login`, {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({ username, password })

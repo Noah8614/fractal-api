@@ -22,3 +22,15 @@ os.makedirs(templates_dir, exist_ok=True)
 app.include_router(core_router)
 app.include_router(auth_router) 
 app.include_router(fractal_router)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://noahfractals.cab432.com",
+        "https://e02drxt0kk.execute-api.ap-southeast-2.amazonaws.com",
+        "http://localhost:8000",
+        "http://YOUR_EC2_IP:8000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
